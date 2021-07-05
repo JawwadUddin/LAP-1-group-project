@@ -1,0 +1,13 @@
+#menu {
+    overflow-x: scroll;
+    white-space:nowrap;
+    padding: 1rem;
+}
+#menu ul{
+  list-style: none;
+}
+#menu a {
+  display: inline;
+  margin: 1rem
+}
+	
