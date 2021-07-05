@@ -6,3 +6,9 @@ function readdata() {
     return JSON.parse(data)
 }
 
+function writedata(data) {
+    data = JSON.stringify(data)
+    fs.writeFileSync(path, data)
+}
+
+module.exports = {readdata, savedata}
