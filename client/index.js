@@ -1,11 +1,8 @@
-// // Setup 
-// const modal = document.getElementById('addNewPostbtn')
-// const closeButton = document.querySelectorAll('.modal-close');
+// Setup 
+const form = document.querySelector('#new-fact-form');
 
-// // Bind Event Listeners
-// modal.addEventListener('click', openModall)
-
-
+// Bind Event Listeners
+form.addEventListener('submit', submitFact);
 
 //closes modals on opening the site 
 all_modals = ['addPost-modal', 'randomPost-modal']

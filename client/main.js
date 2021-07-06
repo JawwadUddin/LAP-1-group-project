@@ -25,8 +25,54 @@ const openModal = (modal) => {
     modalToOpen.style.display = 'flex';
 }
 
+//Submitting a new Fact 
+function submitFact(e){
+    e.preventDefault();
+    let add = e.target.fact.value
+    function appendMessage(){
+               msgText2 = 'https://www.google.com/search?q=' + add 
+               window.location.href = msgText2;
+    };
+    appendMessage()
+}
+
+       
+
+
+
+
+//     const factData = {
+//         fact: e.target.fact.value
+//     }
+
+//     const options = { 
+//         method: 'POST',
+//         body: JSON.stringify(catData),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     };
+
+//     fetch('http://localhost:3000/facts', options)
+//         .then(r => r.json())
+//         .then(appendFact)
+//         .catch(console.warn)
+    
+// }
+
+function appendFacts(Facts){
+    Facts.forEach(appendCat);
+};
+
+function appendCat(catData){
+//a function to append cats to the top of the list
+};
+
+
 module.exports = {
     modalClose,
     openModal,
-    openModall
+    openModall, 
+    submitFact, 
+    appendFacts
 }
