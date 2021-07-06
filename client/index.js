@@ -1,9 +1,9 @@
-// Setup 
-const modal = document.getElementById('addNewPostbtn')
-const closeButton = document.querySelectorAll('.modal-close');
+// // Setup 
+// const modal = document.getElementById('addNewPostbtn')
+// const closeButton = document.querySelectorAll('.modal-close');
 
-// Bind Event Listeners
-modal.addEventListener('click', openModall)
+// // Bind Event Listeners
+// modal.addEventListener('click', openModall)
 
 
 
@@ -15,3 +15,4 @@ all_modals.forEach((modal)=>{
     modalSelected.classList.add('fadeOut');
     modalSelected.style.display = 'none';
 })
+
