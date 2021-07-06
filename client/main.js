@@ -1,41 +1,32 @@
-const modalClose = () => {
-modal.classList.remove('fadeIn');
-modal.classList.add('fadeOut');
-setTimeout(() => {
-    modal.style.display = 'none';
-}, 500);
+// function openModall() {
+//     console.log("Clicked")
+// }
+
+const openModall = () => {
+    console.log("Clicked")
 }
 
-const modalClose = () => {
-    modal.classList.remove('fadeIn');
-    modal.classList.add('fadeOut');
+// Close Modal 
+const modalClose = (modal) => {
+    const modalToClose = document.querySelector('.'+modal);
+    modalToClose.classList.remove('fadeIn');
+    modalToClose.classList.add('fadeOut');
     setTimeout(() => {
-        modal.style.display = 'none';
+        modalToClose.style.display = 'none';
     }, 500);
 }
 
-const openModal = () => {
-    console.log("Clicked")
-    // modal.classList.remove('fadeOut');
-    // modal.classList.add('fadeIn');
-    // modal.style.display = 'flex';
-}
 
-
-for (let i = 0; i < closeButton.length; i++) {
-
-    const elements = closeButton[i];
-
-    elements.onclick = (e) => modalClose();
-
-    modal.style.display = 'none';
-
-    window.onclick = function (event) {
-        if (event.target == modal) modalClose();
-    }
+//Open Modal 
+const openModal = (modal) => {
+    const modalToOpen = document.querySelector('.'+modal);
+    modalToOpen.classList.remove('fadeOut');
+    modalToOpen.classList.add('fadeIn');
+    modalToOpen.style.display = 'flex';
 }
 
 module.exports = {
     modalClose,
     openModal,
+    openModall
 }
