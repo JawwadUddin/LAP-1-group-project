@@ -1,5 +1,6 @@
 #menu {
     overflow-x: scroll;
+    overflow-y: visible;
     white-space:nowrap;
     padding: 1rem;
 }
