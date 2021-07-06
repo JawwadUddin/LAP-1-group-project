@@ -21,7 +21,8 @@ app.post("/journalentries", (req, res) => {
                                     entry: data, 
                                     date: new Date().toLocaleDateString(), 
                                     time: new Date().toLocaleTimeString(),
-                                    comment: []})
+                                    comment: [],
+                                    reactions: [0,0,0]})
     journalentries.push(entry)
     writedata(journalentries)
     res.status(201).send('Added.')    
