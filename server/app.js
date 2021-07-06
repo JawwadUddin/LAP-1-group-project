@@ -1,11 +1,11 @@
-const express = require('express')
-// const bodyparser = require('body-parser')
-const { readdata, writedata } = require('../utilities/jsonreader')
-const JournalEntry = require('journal_class')
-const app = express()
+const express = require('express');
+const bodyparser = require('body-parser');
+const { readdata, writedata } = require('./utilities/jsonreader');
+const JournalEntry = require('./journal_class');
+const app = express();
 
 const cors = require('cors')
-
+;
 app.use(cors())
 app.use(bodyparser.json());
 
@@ -25,13 +25,11 @@ app.post("/journalentries", (req, res) => {
                                     reactions: [0,0,0]})
     journalentries.push(entry)
     writedata(journalentries)
-    res.json(journalentries)
     res.status(201).send('Added.')    
 });
 
 app.get("/journalentries", (req, res) => {
-    const journalentries = readdata();
-    res.json(journalentries)
+    const journalentries = readdata()
     res.status(201).send('Acquired journal entries.')
 })
 
@@ -44,5 +42,7 @@ app.patch('/journalentries/:id', (req, res) => {
     writedata(journalentries)
     res.status(201).send('Commented.')
 })
+
+
 const port = process.env.PORT || 3000; 
 app.listen(port, () => console.log(`Server is listening on http://localhost:${port}/`));
