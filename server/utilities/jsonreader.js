@@ -11,4 +11,4 @@ function writedata(data) {
     fs.writeFileSync(path, data)
 }
 
-module.exports = {readdata, savedata}
+module.exports = {readdata, writedata}

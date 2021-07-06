@@ -1,5 +1,5 @@
 const express = require('express')
-const bodyparser = require('body-parser')
+// const bodyparser = require('body-parser')
 const { readdata, writedata } = require('../utilities/jsonreader')
 const JournalEntry = require('journal_class')
 const app = express()
@@ -25,11 +25,13 @@ app.post("/journalentries", (req, res) => {
                                     reactions: [0,0,0]})
     journalentries.push(entry)
     writedata(journalentries)
+    res.json(journalentries)
     res.status(201).send('Added.')    
 });
 
 app.get("/journalentries", (req, res) => {
-    const journalentries = readdata()
+    const journalentries = readdata();
+    res.json(journalentries)
     res.status(201).send('Acquired journal entries.')
 })
 
