@@ -15,9 +15,10 @@ const modalClose = () => {
 }
 
 const openModal = () => {
-    modal.classList.remove('fadeOut');
-    modal.classList.add('fadeIn');
-    modal.style.display = 'flex';
+    console.log("Clicked")
+    // modal.classList.remove('fadeOut');
+    // modal.classList.add('fadeIn');
+    // modal.style.display = 'flex';
 }
 
 
