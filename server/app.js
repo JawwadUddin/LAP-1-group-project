@@ -20,7 +20,14 @@ app.post("/journalentries", (req, res) => {
     console.log(req)
     const journalentries = readdata()
     // console.log(journalentries)
-    let entry = new JournalEntry({id: journalentries.length, 
+    let id;
+    if (journalentries.length===0) {
+        id = 1
+    } else {
+        let lastentryid = journalentries[journalentries.length-1].id;
+        id = lastentryid + 1;
+    }
+    let entry = new JournalEntry({id: id, 
                                     title: title, 
                                     content: content,
                                     date: new Date().toLocaleDateString(), 
@@ -36,9 +43,18 @@ app.post("/journalentries", (req, res) => {
 
 app.get("/journalentries", (req, res) => {
     const journalentries = readdata()
-    res.status(201).send('Acquired journal entries.')
+    // res.status(201).send('Acquired journal entries.')
+    res.json(journalentries)
 })
-
+app.get('/journalentries/:id', (req, res) => {
+    let id = req.params.id
+    // const data = req.body
+    const journalentries = readdata()
+    // const commented_entry = journalentries.filter(entry => entry.id == ParseInt(id))
+    // commented_entry.comment.push(data)
+    // writedata(journalentries)
+    res.json(journalentries[id])
+})
 app.patch('/journalentries/:id', (req, res) => {
     let id = req.params.id
     const data = req.body
