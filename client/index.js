@@ -12,4 +12,3 @@ all_modals.forEach((modal)=>{
     modalSelected.classList.add('fadeOut');
     modalSelected.style.display = 'none';
 })
-
