@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 app.post("/journalentries", (req, res) => {
     const title = req.body.factheader;
     const content = req.body.fact;
-    console.log(req)
+    // console.log(req)
     const journalentries = readdata()
     // console.log(journalentries)
     let id;
@@ -37,14 +37,15 @@ app.post("/journalentries", (req, res) => {
     console.log(entry)
     journalentries.push(entry.id)
     writedata(journalentries)
-    res.status(201).send('Added.')    
+    res.json(journalentries)
+    // res.status(201).send('Added.')    
     console.log("added");
 });
 
 app.get("/journalentries", (req, res) => {
     const journalentries = readdata()
     // res.status(201).send('Acquired journal entries.')
-    res.json(journalentries)
+    res.send(journalentries)
 })
 app.get('/journalentries/:id', (req, res) => {
     let id = req.params.id
