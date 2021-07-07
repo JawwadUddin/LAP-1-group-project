@@ -4,7 +4,6 @@ class JournalEntry {
         this.entry = entry
         this.date = date  
         this.time = time 
-        this.tag = tag
         this.comment = comment
         this.reactions = reactions
     }

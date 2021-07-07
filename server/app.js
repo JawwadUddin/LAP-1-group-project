@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const { readdata, writedata } = require('./utilities/jsonreader');
-const JournalEntry = require('./journal_class');
+const JournalEntry = require('./journal_class').JournalEntry
 const app = express();
 
 const cors = require('cors')
@@ -15,17 +15,21 @@ app.get("/", (req, res) => {
 });
 
 app.post("/journalentries", (req, res) => {
-    const data = req.body
+    const data = req.body.fact
+    // console.log(data)
     const journalentries = readdata()
-    const entry = new JournalEntry({id: journalentries.length, 
+    // console.log(journalentries)
+    let entry = new JournalEntry({id: journalentries.length, 
                                     entry: data, 
                                     date: new Date().toLocaleDateString(), 
                                     time: new Date().toLocaleTimeString(),
                                     comment: [],
-                                    reactions: [0,0,0]})
-    journalentries.push(entry)
+                                    reactions: [0,0,0]});
+    console.log(entry)
+    journalentries.push(entry.id)
     writedata(journalentries)
     res.status(201).send('Added.')    
+    console.log("added");
 });
 
 app.get("/journalentries", (req, res) => {
