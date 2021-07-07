@@ -1,5 +1,5 @@
 const fs = require('fs')
-const path = '../data.json'
+const path = 'data.json'
 
 function readdata() {
     const data = fs.readFileSync(path)
@@ -11,4 +11,4 @@ function writedata(data) {
     fs.writeFileSync(path, data)
 }
 
-module.exports = {readdata, savedata}
+module.exports = {readdata, writedata}
