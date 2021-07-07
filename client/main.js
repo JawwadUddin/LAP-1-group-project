@@ -34,20 +34,18 @@ const openModal = (modal) => {
 //Submitting a new Fact 
 function submitForm(event) {
     event.preventDefault();
-    // let title = event.target.facttitle.value;
     let fact = event.target.fact.value;
-    // console.log(fact)
-    // console.log(title)
-    postData(fact)
+    let factheader = event.target.factheader.value;
+    postData(fact, factheader)
 }   
-async function postData(fact){
+async function postData(fact, factheader){
     let options = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-        body: JSON.stringify({fact})
+        body: JSON.stringify({fact, factheader})
     }
     let response = await fetch('http://localhost:3000/journalentries', options);
     console.log(response)

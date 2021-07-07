@@ -15,12 +15,14 @@ app.get("/", (req, res) => {
 });
 
 app.post("/journalentries", (req, res) => {
-    const data = req.body.fact
-    // console.log(data)
+    const title = req.body.factheader;
+    const content = req.body.fact;
+    console.log(req)
     const journalentries = readdata()
     // console.log(journalentries)
     let entry = new JournalEntry({id: journalentries.length, 
-                                    entry: data, 
+                                    title: title, 
+                                    content: content,
                                     date: new Date().toLocaleDateString(), 
                                     time: new Date().toLocaleTimeString(),
                                     comment: [],

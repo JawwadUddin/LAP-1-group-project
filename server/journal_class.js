@@ -1,7 +1,8 @@
 class JournalEntry {
-    constructor(id,entry,date,time,comment, reactions) {
+    constructor(id,title,content,date,time,comment, reactions) {
         this.id = id 
-        this.entry = entry
+        this.title = title
+        this.content = content
         this.date = date  
         this.time = time 
         this.comment = comment
