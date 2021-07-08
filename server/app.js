@@ -84,7 +84,6 @@ app.patch('/journalentries', (req, res) => {
     res.json(journalentries)
     entry.reactions[index] += 1;
     writedata(journalentries)
-    // console.log(entry);
 })
 
 const port = process.env.PORT || 3000; 

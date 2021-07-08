@@ -228,13 +228,13 @@ function createCard(item) {
 
     let img2 = document.createElement("img");
     img2.setAttribute('src', './assets/images/message2.svg');
-    img2.setAttribute('onCLick', 'addcomments(parseInt(this.id[0]))');
+    img2.setAttribute('onCLick', 'showcomments(parseInt(this.id[0]))');
     img2.className = "message2 w-6";
     img2.setAttribute('id', `${item.id}messages`);
 
     let img2b = document.createElement("img");
     img2b.setAttribute('src', './assets/images/message2.svg');
-    img2b.setAttribute('onCLick', 'removecomments(parseInt(this.id[0]))');
+    img2b.setAttribute('onCLick', 'hidecomments(parseInt(this.id[0]))');
     img2b.className = "message2 w-6 hidden";
     img2b.setAttribute('id', `${item.id}hidden`);
 
@@ -408,27 +408,34 @@ function createCard(item) {
 
     div2.appendChild(div10);
 
+    let div10a = document.createElement("div");
+    div10a.setAttribute('id', `${item.id}commentsectiondiv`);
+
     for (let i=0; i<item.comment.length; i++) {
         let coms = document.createElement("p");
         coms.textContent = item.comment[i];
-        div10.appendChild(coms);
+        coms.className = "border-t border-gray-200 my-2 pb-2 font-light text-center mx-4 pt-2";
+        div10a.appendChild(coms);
     }
+
+    div10.appendChild(div10a)
 
     let div11 = document.createElement("div");
     div10.appendChild(div11);
+    div11.className = "flex justify-between mx-4";
 
     let form = document.createElement("form");
-    form.className = "flex mb-3"
+    form.className = "flex justify-between mb-3 w-full"
+    form.setAttribute('id', `${item.id}form`)
     div11.appendChild(form);
 
     let input1 = document.createElement("input");
-    let br = document.createElement("br")
     let input2 = document.createElement("input");
 
     input1.setAttribute('type', "text");
-    input1.className = "w-60 mr-3 pl-4 outline-none font-light border border-gray-300 rounded-full focus:outline-none px-2 focus:border-blue-300 focus:shadow-blue";
+    input1.className = "w-full mr-3 pl-4 outline-none font-light border border-gray-300 rounded-full focus:outline-none px-2 focus:border-blue-300 focus:shadow-blue";
     input1.setAttribute('placeholder', "comment here...");
-    input1.setAttribute('id', `${item.id}actualcomment`);
+    input1.setAttribute('id', `actualcomment${item.id}`);
 
     input2.setAttribute('type', "submit");
     input2.className = "comment-button bg-gray-600 text-white p-2 hover:bg-blue-400 cursor-pointer rounded-full";
@@ -436,10 +443,9 @@ function createCard(item) {
     input2.setAttribute('id', `${item.id}submitcomment`);
 
     form.appendChild(input1);
-    form.appendChild(br);
     form.appendChild(input2);
 
-    
+    form.addEventListener('submit', submitcomment)
 }
 
 // working on emotes now
@@ -469,8 +475,7 @@ function reactBtn(clicked_id)
 
 //getting the comments to work
 
-function addcomments(id) {
-    console.log(id)
+function showcomments(id) {
     let sect = document.getElementById(`${id}commentsection`)
     sect.setAttribute('class', '')
     let sect2 = document.getElementById(`${id}emotesection`)
@@ -482,7 +487,7 @@ function addcomments(id) {
     
 }
 
-function removecomments(id) {
+function hidecomments(id) {
     let sect = document.getElementById(`${id}commentsection`)
     sect.setAttribute('class', 'hidden')
     let sect2 = document.getElementById(`${id}emotesection`)
@@ -493,3 +498,17 @@ function removecomments(id) {
     sect4.setAttribute('class', 'w-6 hidden')
     
 }
+
+function submitcomment(event) {
+    event.preventDefault();
+    console.log(event.target)
+    let formid = event.target.id;
+    let divid = `${formid[0]}commentsectiondiv`;
+    let div = document.getElementById(divid);
+    let p = document.createElement("p");
+    p.className = "border-t border-gray-200 my-2 pb-2 font-light text-center mx-4 pt-2"
+    let holder = `actualcomment${formid[0]}`;
+    let h = document.getElementById(holder).value;
+    p.textContent = h;
+    div.appendChild(p);
+}       
