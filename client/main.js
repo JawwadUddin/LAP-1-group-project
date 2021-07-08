@@ -31,6 +31,47 @@ const openModal = (modal) => {
     modalToOpen.style.display = 'flex';
 }
 
+//testfnc
+function addgifbtnclicked() {
+    let sect = document.getElementById('searchbargif') 
+    sect.setAttribute('class', ' searchbox flex justify-center my-1 pb-3')
+    let sect2 = document.getElementById('buttons_post') 
+    sect2.setAttribute('class', 'flex justify-between pt-4 text-xs mb-8')
+    let sect3 = document.getElementById('fact') 
+    sect3.setAttribute('class', 'py-5 px-2 text-gray-900 outline-none block h-40 w-full overflow-auto')
+    let sect4 = document.getElementById('factheader') 
+    sect4.setAttribute('class', 'px-2 pt-2 text-gray-900 outline-none block h-10 w-full overflow-auto')
+    let sect5 = document.getElementById('image_post_div') 
+    sect5.setAttribute('class', 'flex h-48')
+}
+
+function clickedSearch() {
+    let sect = document.getElementById('searchbargif') 
+    sect.setAttribute('class', 'hidden searchbox flex justify-center my-1 pb-3')
+}
+
+function test() {
+    console.log("Clicked")
+}
+
+function searchgiphy(e) {
+    // e.preventDefault(); //Stops page reloading
+    const APIkey = "HpcUur5hV9cdZ2qYv8leJeyCMimbVkPX"
+    let query = e.target.inputGIF.value
+    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIkey}&q=${query}&limit=1&rating=g&lang=en`
+    console.log(url)
+    fetch(url)
+    .then(response => response.json()) // get responses
+    .then(content => {
+        console.log(content.data)
+        //building HTML - needs to be integrated into app
+        let sect = document.getElementById('image_post')
+        sect.src = content.data[0].images.fixed_width.url;
+        sect.alt = content.data[0].title;
+    }) 
+    .catch(err => {console.error(err)})
+}
+
 //Submitting a new Fact 
 function submitForm(event) {
     event.preventDefault();
