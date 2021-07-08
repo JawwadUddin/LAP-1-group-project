@@ -7,6 +7,7 @@ const main = document.querySelector("main");
 // Bind Event Listeners
 form.addEventListener('submit', submitForm);
 
+
 //closes modals on opening the site 
 all_modals = ['addPost-modal', 'randomPost-modal']
 all_modals.forEach((modal)=>{
@@ -32,6 +33,73 @@ const openModal = (modal) => {
     modalToOpen.classList.remove('fadeOut');
     modalToOpen.classList.add('fadeIn');
     modalToOpen.style.display = 'flex';
+}
+
+//testfnc
+function addgifbtnclicked() {
+    let sect = document.getElementById('searchbargif') 
+    sect.setAttribute('class', ' searchbox flex justify-center my-1 pb-3')
+    let sect2 = document.getElementById('buttons_post') 
+    sect2.setAttribute('class', 'flex justify-between pt-4 text-xs mb-8')
+    let sect3 = document.getElementById('fact') 
+    sect3.setAttribute('class', 'py-5 px-2 text-gray-900 outline-none block h-40 w-full overflow-auto')
+    let sect4 = document.getElementById('factheader') 
+    sect4.setAttribute('class', 'px-2 pt-2 text-gray-900 outline-none block h-10 w-full overflow-auto')
+    let sect5 = document.getElementById('image_post_div') 
+    sect5.setAttribute('class', 'flex h-48')
+}
+
+function addcomments() {
+    let sect = document.getElementById('comments-section') 
+    sect.setAttribute('class', '')
+    let sect2 = document.getElementById('emotes-section')
+    sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
+    let sect3 = document.getElementById('Layer_1_messages')
+    sect3.setAttribute('class', 'ml-1 hidden')
+    let sect4 = document.getElementById('Layer_1_hidden')
+    sect4.setAttribute('class', 'ml-1')
+    
+}
+
+function removecomments() {
+    let sect = document.getElementById('comments-section') 
+    sect.setAttribute('class', 'hidden')
+    let sect2 = document.getElementById('emotes-section')
+    sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
+    let sect3 = document.getElementById('Layer_1_messages')
+    sect3.setAttribute('class', 'ml-1')
+    let sect4 = document.getElementById('Layer_1_hidden')
+    sect4.setAttribute('class', 'ml-1 hidden')
+    
+}
+
+
+
+function clickedSearch() {
+    let sect = document.getElementById('searchbargif') 
+    sect.setAttribute('class', 'hidden searchbox flex justify-center my-1 pb-3')
+}
+
+function test() {
+    console.log("Clicked")
+}
+
+function searchgiphy(e) {
+    e.preventDefault(); //Stops page reloading
+    const APIkey = "HpcUur5hV9cdZ2qYv8leJeyCMimbVkPX"
+    let query = e.target.inputGIF.value
+    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIkey}&q=${query}&limit=1&rating=g&lang=en`
+    console.log(url)
+    fetch(url)
+        .then(response => response.json()) // get responses
+        .then(content => {
+            // console.log(content.data)
+            let outputGifs = document.querySelector("#image_post")
+            outputGifs.src = content.data[0].images.fixed_width.url;
+            outputGifs.alt = content.data[0].title;
+            document.querySelector("#inputGIF").value = ""
+        })
+        .catch(err => { console.error(err) })
 }
 
 //Submitting a new Fact 
