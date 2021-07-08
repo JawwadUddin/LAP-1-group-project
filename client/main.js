@@ -1,13 +1,5 @@
 loadingCards()
 
-// Setup 
-const form = document.querySelector('#new-fact-form');
-const main = document.querySelector("main");
-
-// Bind Event Listeners
-form.addEventListener('submit', submitForm);
-
-
 //closes modals on opening the site 
 all_modals = ['addPost-modal', 'randomPost-modal']
 all_modals.forEach((modal)=>{
@@ -415,4 +407,22 @@ function reactBtn(clicked_id)
     }
     let response = await fetch('http://localhost:3000/journalentries', options);
     let responseJSON = await response.json();
+}
+
+module.exports = { 
+    modalClose,
+    openModal,
+    addgifbtnclicked,
+    addcomments,
+    removecomments,
+    clickedSearch,
+    searchgiphy,
+    test,
+    submitForm,
+    postData,
+    loadingCards,
+    getItems,
+    createCard,
+    reactBtn,
+    patchData        
 }
