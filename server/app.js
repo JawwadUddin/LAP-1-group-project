@@ -67,8 +67,9 @@ app.get('/journalentries/:id', (req, res) => {
 // })
 
 app.patch('/journalentries', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     let clicked_id = req.body.clicked_id;
+    // console.log(clicked_id)
     let id = clicked_id[0];
     const journalentries = readdata();
     const entry = journalentries.filter( e => e.id == parseInt(id))[0];
@@ -83,6 +84,19 @@ app.patch('/journalentries', (req, res) => {
     }
     res.json(journalentries)
     entry.reactions[index] += 1;
+    writedata(journalentries)
+})
+
+app.patch('/comments', (req, res) => {
+    // console.log(req.body)
+    let id = req.body.clicked_id;
+    let h = req.body.h;
+    console.log(id)
+    const journalentries = readdata();
+    const entry = journalentries.filter( e => e.id == parseInt(id))[0];
+    console.log(entry)
+    res.json(journalentries)
+    entry.comment.push(h);
     writedata(journalentries)
 })
 

@@ -511,4 +511,18 @@ function submitcomment(event) {
     let h = document.getElementById(holder).value;
     p.textContent = h;
     div.appendChild(p);
+    patchcomment(formid[0], h)
 }       
+
+async function patchcomment(clicked_id, h){
+    let options = {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({clicked_id, h})
+    }
+    let response = await fetch('http://localhost:3000/comments', options);
+    let responseJSON = await response.json();
+}
