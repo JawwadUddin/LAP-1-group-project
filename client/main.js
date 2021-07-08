@@ -1,3 +1,5 @@
+loadingCards()
+
 // Setup 
 const form = document.querySelector('#new-fact-form');
 const main = document.querySelector("main");
@@ -55,13 +57,19 @@ async function postData(fact, factheader){
     getItems(fact, factheader);
 }
 
+async function loadingCards(){
+    let response = await fetch('http://localhost:3000/journalentries');
+    console.log(response);
+    let items  = await response.json();
+    items.forEach(item => createCard(item))
+}
+
 async function getItems(){
     let response = await fetch('http://localhost:3000/journalentries');
     console.log(response);
     let items  = await response.json();
     console.log(items)
-    // main.textContent = '';
-    items.forEach(item => createCard(item));
+    createCard(items[items.length-1])
 }
 
 function createCard(item) {
@@ -103,7 +111,7 @@ function createCard(item) {
     let div5 = document.createElement("div");
     div5.className = "space-y-2 px-4 font-light";
 
-    let p2 = document.createElement("p2");
+    let p2 = document.createElement("p");
     p2.textContent = item.content;
 
     let div6 = document.createElement("div");
@@ -149,8 +157,10 @@ function createCard(item) {
     // circle3.setAttribute('r','32');
 
     let img2 = document.createElement("img");
-    img2.setAttribute('src', './assets/images/speech-balloon.png');
-    img2.className = "w-6";
+    img2.setAttribute('src', './assets/images/message2.svg');
+    img2.setAttribute('onCLick', 'reactBtn(this.id)');
+    img2.className = "message2 w-6";
+    img2.setAttribute('id', `${item.id}x`);
 
     let div9 = document.createElement("div");
     div9.className = "flex";
@@ -183,8 +193,13 @@ function createCard(item) {
     // path3.setAttribute('style', 'fill: #3B82F6');
 
     let img3 = document.createElement("img");
-    img3.setAttribute('src', './assets/images/heart.png');
-    img3.className = "w-6 ml-2";
+    img3.setAttribute('src', './assets/images/starred.svg');
+    img3.setAttribute('onCLick', 'reactBtn(this.id)');
+    img3.className = "starred w-6 ml-2";
+    img3.setAttribute('id', `${item.id}a`);
+    let p3 = document.createElement("p");
+    p3.setAttribute('id', `${item.id}acounter`)
+    p3.textContent = item.reactions[0];
 
     // let svg3 = document.createElement("svg");
     // svg3.className = "mx-1";
@@ -214,8 +229,13 @@ function createCard(item) {
     // path5.setAttribute('style', 'fill: #EC4899');
 
     let img4 = document.createElement("img");
-    img4.setAttribute('src', './assets/images/joy.png');
-    img4.className = "w-6 ml-2";
+    img4.setAttribute('src', './assets/images/lol.svg');
+    img4.setAttribute('onCLick', 'reactBtn(this.id)');
+    img4.className = "lol w-6 ml-2";
+    img4.setAttribute('id', `${item.id}b`);
+    let p4 = document.createElement("p");
+    p4.setAttribute('id', `${item.id}bcounter`)
+    p4.textContent = item.reactions[1];
 
     // let svg4 = document.createElement("svg");
     // svg4.className = "ml-1";
@@ -245,8 +265,14 @@ function createCard(item) {
     // path7.setAttribute('style', 'fill: #EF4444');
 
     let img5 = document.createElement("img");
-    img5.setAttribute('src', './assets/images/lie.png');
-    img5.className = "w-6 ml-2";
+    img5.setAttribute('src', './assets/images/lying.svg');
+    img5.setAttribute('onCLick', 'reactBtn(this.id)');
+    img5.className = "lying w-6 ml-2";
+    img5.setAttribute('id', `${item.id}c`);
+    let p5 = document.createElement("p");
+    p5.setAttribute('id', `${item.id}ccounter`)
+    p5.textContent = item.reactions[2];
+
 
     document.querySelector("main").appendChild(div1);
     div1.appendChild(div2);
@@ -277,20 +303,36 @@ function createCard(item) {
     div8.appendChild(div9);
 
     div9.appendChild(img3);
+    div9.appendChild(p3);
     // svg2.appendChild(g2);
     // svg2.appendChild(g3);
     // g2.appendChild(path2);
     // g3.appendChild(path3);
 
     div9.appendChild(img4);
+    div9.appendChild(p4);
     // svg3.appendChild(g4);
     // svg3.appendChild(g5);
     // g4.appendChild(path4);
     // g5.appendChild(path5);
 
     div9.appendChild(img5);
+    div9.appendChild(p5);
     // svg4.appendChild(g6);
     // svg4.appendChild(g7);
     // g6.appendChild(path6);
     // g7.appendChild(path7);
 }
+
+// working on emotes now
+function reactBtn(clicked_id)
+  {
+    let clickedid = clicked_id;
+    let pid = clicked_id+"counter";
+    console.log(pid)
+
+    let ptag = document.getElementById(`${pid}`);
+    console.log(ptag)
+    ptag.innerHTML = parseInt(ptag.innerHTML) + 1;
+    console.log(clickedid)
+  }

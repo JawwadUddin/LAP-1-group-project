@@ -65,4 +65,7 @@
   width: 90vw;
 }
 
-
+.starredtest{
+  background-image: url("./assets/images/heart.png");
+  background-size: cover;
+}
