@@ -7,6 +7,11 @@ const main = document.querySelector("main");
 // Bind Event Listeners
 form.addEventListener('submit', submitForm);
 
+ // // Setup 
+                    const formgif = document.querySelector('#searchbargif');
+
+                    // // Bind Event Listeners
+                    formgif.addEventListener('submit', searchgiphy);
 
 //closes modals on opening the site 
 all_modals = ['addPost-modal', 'randomPost-modal']
@@ -49,40 +54,12 @@ function addgifbtnclicked() {
     sect5.setAttribute('class', 'flex h-48')
 }
 
-// function addcomments() {
-//     let sect = document.getElementById(`${item.id}commentsection`)
-//     sect.setAttribute('class', '')
-//     let sect2 = document.getElementById(`${item.id}emotesection`)
-//     sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
-//     let sect3 = document.getElementById(`${item.id}messages`)
-//     sect3.setAttribute('class', 'ml-1 hidden')
-//     let sect4 = document.getElementById(`${item.id}hidden`)
-//     sect4.setAttribute('class', 'ml-1')
-    
-// }
-
-// function removecomments() {
-//     let sect = document.getElementById(`${item.id}commentsection`)
-//     sect.setAttribute('class', 'hidden')
-//     let sect2 = document.getElementById(`${item.id}emotesection`)
-//     sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
-//     let sect3 = document.getElementById(`${item.id}messages`)
-//     sect3.setAttribute('class', 'ml-1')
-//     let sect4 = document.getElementById(`${item.id}hidden`)
-//     sect4.setAttribute('class', 'ml-1 hidden')
-    
-// }
-
-
 
 function clickedSearch() {
     let sect = document.getElementById('searchbargif') 
     sect.setAttribute('class', 'hidden searchbox flex justify-center my-1 pb-3')
 }
 
-function test() {
-    console.log("Clicked")
-}
 
 function searchgiphy(e) {
     e.preventDefault(); //Stops page reloading
@@ -107,22 +84,23 @@ function submitForm(event) {
     event.preventDefault();
     let fact = event.target.fact.value;
     let factheader = event.target.factheader.value;
-    postData(fact, factheader)
+    let outputGifs = document.querySelector("#image_post");
+    postData(fact, factheader, outputGifs.src)
 }   
-async function postData(fact, factheader){
+async function postData(fact, factheader, src){
     let options = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-        body: JSON.stringify({fact, factheader})
+        body: JSON.stringify({fact, factheader, src})
     }
     let response = await fetch('http://localhost:3000/journalentries', options);
     // console.log(response)
     let responseJSON = await response.json();
     // console.log(responseJSON)
-    getItems(fact, factheader);
+    getItems(fact, factheader, src);
 }
 
 async function loadingCards(){
@@ -146,13 +124,16 @@ function createCard(item) {
     div1.className = "flex justify-between m-5";
 
     let div2 = document.createElement("div");
-    div2.className = "flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl";
+    div2.className = "flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl w-11/12";
 
-    let img1 = document.createElement("img");
-    img1.className = "rounded-3xl rounded-b-none";
-    img1.setAttribute('src','https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1');
-    img1.setAttribute('alt','Fact Image');
-    img1.setAttribute('loading','lazy');
+    if (item.src !== "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg") {
+        let img1 = document.createElement("img");
+        img1.className = "rounded-3xl rounded-b-none";
+        img1.setAttribute('src', item.src);
+        img1.setAttribute('alt','Fact Image');
+        img1.setAttribute('loading','lazy');
+        div2.appendChild(img1);
+    }
 
     let div3 = document.createElement("div");
     div3.className = "flex justify-between -mt-4 px-4";
@@ -353,7 +334,7 @@ function createCard(item) {
     document.querySelector("main").appendChild(div1);
     div1.appendChild(div2);
     
-    div2.appendChild(img1);
+    // div2.appendChild(img1);
     div2.appendChild(div3);
     div2.appendChild(div4);
     div2.appendChild(div5);

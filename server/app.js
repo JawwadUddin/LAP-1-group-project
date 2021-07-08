@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 app.post("/journalentries", (req, res) => {
     const title = req.body.factheader;
     const content = req.body.fact;
+    const src = req.body.src;
     // console.log(req)
     const journalentries = readdata()
     // console.log(journalentries)
@@ -33,7 +34,9 @@ app.post("/journalentries", (req, res) => {
                                     date: new Date().toLocaleDateString(), 
                                     time: new Date().toLocaleTimeString(),
                                     comment: [],
-                                    reactions: [0,0,0]});
+                                    reactions: [0,0,0],
+                                    src: src
+                                });
     console.log(entry)
     journalentries.push(entry.id)
     writedata(journalentries)
@@ -54,7 +57,7 @@ app.get('/journalentries/:id', (req, res) => {
     // const commented_entry = journalentries.filter(entry => entry.id == ParseInt(id))
     // commented_entry.comment.push(data)
     // writedata(journalentries)
-    res.json(journalentries[id])
+    res.json(journalentries[id-1])
 })
 // app.patch('/journalentries/:id', (req, res) => {
 //     let id = req.params.id

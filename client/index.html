@@ -691,34 +691,6 @@ style="background: rgba(0,0,0,.7);">
 
                 </form>
 
-                <script>
-                    function searchgiphy(e) {
-                        e.preventDefault(); //Stops page reloading
-                        const APIkey = "HpcUur5hV9cdZ2qYv8leJeyCMimbVkPX"
-                        let query = e.target.inputGIF.value
-                        let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIkey}&q=${query}&limit=1&rating=g&lang=en`
-                        console.log(url)
-                        fetch(url)
-                            .then(response => response.json()) // get responsess
-                            .then(content => {
-                                // console.log(content.data)
-                                let outputGifs = document.querySelector("#image_post")
-                                outputGifs.src = content.data[0].images.fixed_width.url;
-                                outputGifs.alt = content.data[0].title;
-                                document.querySelector("#inputGIF").value = ""
-                            })
-                            .catch(err => { console.error(err) })
-                    }
-
-
-                    // Setup 
-                    const formgif = document.querySelector('#searchbargif');
-
-                    // Bind Event Listeners
-                    formgif.addEventListener('submit', searchgiphy);
-
-
-                </script>
                 </form>
             </div>
         </div>
