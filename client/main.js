@@ -127,14 +127,14 @@ async function getItems(){
 function createCard(item) {
     
     let div1 = document.createElement("div");
-    div1.className = "flex justify-between m-5";
+    div1.className = "flex m-5 lg:w-1/4";
 
     let div2 = document.createElement("div");
     div2.className = "flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl w-11/12";
 
     if (item.src !== "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg") {
         let img1 = document.createElement("img");
-        img1.className = "rounded-3xl rounded-b-none";
+        img1.className = "rounded-3xl rounded-b-none w-full object-cover";
         img1.setAttribute('src', item.src);
         img1.setAttribute('alt','Fact Image');
         img1.setAttribute('loading','lazy');
