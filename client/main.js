@@ -333,7 +333,7 @@ function reactBtn(clicked_id)
     let ptag = document.getElementById(`${pid}`);
     ptag.innerHTML = parseInt(ptag.innerHTML) + 1;
     console.log(clickedid)
-    patchData(clicked_id, pid);
+    patchData(clicked_id);
   }
 
   async function patchData(clicked_id){
