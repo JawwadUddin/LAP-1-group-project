@@ -893,7 +893,7 @@ style="background: rgba(0,0,0,.7);">
                         let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIkey}&q=${query}&limit=1&rating=g&lang=en`
                         console.log(url)
                         fetch(url)
-                            .then(response => response.json()) // get responses
+                            .then(response => response.json()) // get responsess
                             .then(content => {
                                 // console.log(content.data)
                                 let outputGifs = document.querySelector("#image_post")
