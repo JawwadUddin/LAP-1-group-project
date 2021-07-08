@@ -49,29 +49,29 @@ function addgifbtnclicked() {
     sect5.setAttribute('class', 'flex h-48')
 }
 
-function addcomments() {
-    let sect = document.getElementById('comments-section') 
-    sect.setAttribute('class', '')
-    let sect2 = document.getElementById('emotes-section')
-    sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
-    let sect3 = document.getElementById('Layer_1_messages')
-    sect3.setAttribute('class', 'ml-1 hidden')
-    let sect4 = document.getElementById('Layer_1_hidden')
-    sect4.setAttribute('class', 'ml-1')
+// function addcomments() {
+//     let sect = document.getElementById(`${item.id}commentsection`)
+//     sect.setAttribute('class', '')
+//     let sect2 = document.getElementById(`${item.id}emotesection`)
+//     sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
+//     let sect3 = document.getElementById(`${item.id}messages`)
+//     sect3.setAttribute('class', 'ml-1 hidden')
+//     let sect4 = document.getElementById(`${item.id}hidden`)
+//     sect4.setAttribute('class', 'ml-1')
     
-}
+// }
 
-function removecomments() {
-    let sect = document.getElementById('comments-section') 
-    sect.setAttribute('class', 'hidden')
-    let sect2 = document.getElementById('emotes-section')
-    sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
-    let sect3 = document.getElementById('Layer_1_messages')
-    sect3.setAttribute('class', 'ml-1')
-    let sect4 = document.getElementById('Layer_1_hidden')
-    sect4.setAttribute('class', 'ml-1 hidden')
+// function removecomments() {
+//     let sect = document.getElementById(`${item.id}commentsection`)
+//     sect.setAttribute('class', 'hidden')
+//     let sect2 = document.getElementById(`${item.id}emotesection`)
+//     sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
+//     let sect3 = document.getElementById(`${item.id}messages`)
+//     sect3.setAttribute('class', 'ml-1')
+//     let sect4 = document.getElementById(`${item.id}hidden`)
+//     sect4.setAttribute('class', 'ml-1 hidden')
     
-}
+// }
 
 
 
@@ -141,6 +141,7 @@ async function getItems(){
 }
 
 function createCard(item) {
+    
     let div1 = document.createElement("div");
     div1.className = "flex justify-between m-5";
 
@@ -190,6 +191,7 @@ function createCard(item) {
 
     let div8 = document.createElement("div");
     div8.className = "flex justify-between p-4 pt-0";
+    div8.setAttribute('id', `${item.id}emotesection`);
 
     // let svg1 = document.createElement("svg");
     // svg1.className = "ml-1";
@@ -226,9 +228,15 @@ function createCard(item) {
 
     let img2 = document.createElement("img");
     img2.setAttribute('src', './assets/images/message2.svg');
-    img2.setAttribute('onCLick', 'reactBtn(this.id)');
+    img2.setAttribute('onCLick', 'addcomments(parseInt(this.id[0]))');
     img2.className = "message2 w-6";
-    img2.setAttribute('id', `${item.id}x`);
+    img2.setAttribute('id', `${item.id}messages`);
+
+    let img2b = document.createElement("img");
+    img2b.setAttribute('src', './assets/images/message2.svg');
+    img2b.setAttribute('onCLick', 'removecomments(parseInt(this.id[0]))');
+    img2b.className = "message2 w-6 hidden";
+    img2b.setAttribute('id', `${item.id}hidden`);
 
     let div9 = document.createElement("div");
     div9.className = "flex";
@@ -363,6 +371,7 @@ function createCard(item) {
     div6.appendChild(div7);
 
     div8.appendChild(img2);
+    div8.appendChild(img2b)
     // svg1.appendChild(path1);
     // svg1.appendChild(g1);
     // g1.appendChild(circle1);
@@ -390,6 +399,47 @@ function createCard(item) {
     // svg4.appendChild(g7);
     // g6.appendChild(path6);
     // g7.appendChild(path7);
+
+    // this is the comment section
+
+    let div10 = document.createElement("div");
+    div10.className = "hidden";
+    div10.setAttribute('id', `${item.id}commentsection`);
+
+    div2.appendChild(div10);
+
+    for (let i=0; i<item.comment.length; i++) {
+        let coms = document.createElement("p");
+        coms.textContent = item.comment[i];
+        div10.appendChild(coms);
+    }
+
+    let div11 = document.createElement("div");
+    div10.appendChild(div11);
+
+    let form = document.createElement("form");
+    form.className = "flex mb-3"
+    div11.appendChild(form);
+
+    let input1 = document.createElement("input");
+    let br = document.createElement("br")
+    let input2 = document.createElement("input");
+
+    input1.setAttribute('type', "text");
+    input1.className = "w-60 mr-3 pl-4 outline-none font-light border border-gray-300 rounded-full focus:outline-none px-2 focus:border-blue-300 focus:shadow-blue";
+    input1.setAttribute('placeholder', "comment here...");
+    input1.setAttribute('id', `${item.id}actualcomment`);
+
+    input2.setAttribute('type', "submit");
+    input2.className = "comment-button bg-gray-600 text-white p-2 hover:bg-blue-400 cursor-pointer rounded-full";
+    input2.setAttribute('value', "");
+    input2.setAttribute('id', `${item.id}submitcomment`);
+
+    form.appendChild(input1);
+    form.appendChild(br);
+    form.appendChild(input2);
+
+    
 }
 
 // working on emotes now
@@ -415,4 +465,31 @@ function reactBtn(clicked_id)
     }
     let response = await fetch('http://localhost:3000/journalentries', options);
     let responseJSON = await response.json();
+}
+
+//getting the comments to work
+
+function addcomments(id) {
+    console.log(id)
+    let sect = document.getElementById(`${id}commentsection`)
+    sect.setAttribute('class', '')
+    let sect2 = document.getElementById(`${id}emotesection`)
+    sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
+    let sect3 = document.getElementById(`${id}messages`)
+    sect3.setAttribute('class', 'w-6 hidden')
+    let sect4 = document.getElementById(`${id}hidden`)
+    sect4.setAttribute('class', 'w-6')
+    
+}
+
+function removecomments(id) {
+    let sect = document.getElementById(`${id}commentsection`)
+    sect.setAttribute('class', 'hidden')
+    let sect2 = document.getElementById(`${id}emotesection`)
+    sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
+    let sect3 = document.getElementById(`${id}messages`)
+    sect3.setAttribute('class', 'w-6')
+    let sect4 = document.getElementById(`${id}hidden`)
+    sect4.setAttribute('class', 'w-6 hidden')
+    
 }
