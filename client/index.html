@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
     <link href="./tailwind.css" rel="stylesheet">
-    <script defer="" src="./index.js"></script>
+    <script defer src="./index.js"></script>
     <link rel="icon" href="./assets/favicon.svg"/>
     <title>Fact-Ory</title>
 </head>
@@ -349,21 +349,22 @@ Welcome to Fact-Ory, a place where you can find and share knowlege on just about
   
 <main>
 <!-- Edited Card Version -->
-<div class="flex justify-between m-5 ">
+
+<div class="flex justify-between m-5">
     <!-- Div for Flex Columns -->
-    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl ">
+    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl">
         <img class="rounded-3xl rounded-b-none"
             src="https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1"
             alt="Fact Image" loading="lazy" />
         <!-- Div for the Tag & Time -->
         <!-- Tag Div  -->
         <div class="flex justify-between -mt-4 px-4">
-            <span id="fact-tag"
+            <span id="facttag"
                 class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-medium tracking-wide text-white px-3 pt-0.5">World
             </span>
             <!-- Date -->
             <span class="flex h-min space-x-1 items-center rounded-full  bg-white py-1 px-2 text-sm font-medium">
-                <p id="time" class="text-center ">
+                <p id="time" class="text-center">
                     2 March 2021
                 </p>
             </span>
@@ -374,7 +375,7 @@ Welcome to Fact-Ory, a place where you can find and share knowlege on just about
                 Easter Island Heads</h1>
         </div>
         <!-- Div for the Fact Body  -->
-        <div class="space-y-2 px-4 font-light ">
+        <div class="space-y-2 px-4 font-light">
             <p>The iconic stone heads protruding from the ground on Easter Island have bodies below.</p>
         </div>
         <!-- Div for horizontal Line -->
@@ -444,8 +445,7 @@ Welcome to Fact-Ory, a place where you can find and share knowlege on just about
                         }
                     </style>
                     <g id="BG">
-                        <path class="st2" d="M256,512L256,512C114.6,512,0,397.4,0,256l0,0C0,114.6,114.6,0,256,0l0,0c141.4,0,256,114.6,256,256l0,0
-               C512,397.4,397.4,512,256,512z" />
+                        <path class="st2" d="M256,512L256,512C114.6,512,0,397.4,0,256l0,0C0,114.6,114.6,0,256,0l0,0c141.4,0,256,114.6,256,256l0,0C512,397.4,397.4,512,256,512z" />
                     </g>
                     <g id="bold_v2">
                         <path class="st3" d="M256.1,0.2C114.9,0.2,0.2,114.9,0.2,256.1s114.7,255.9,255.9,255.9s255.9-114.7,255.9-255.9
@@ -687,7 +687,7 @@ Welcome to Fact-Ory, a place where you can find and share knowlege on just about
     </div>
     <!-- Div for the Emojis -->
     <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
+        <img class="w-6" src="./assets/images/speech-balloon.png" alt="">
         <div class="emojis flex">
             <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
             <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
@@ -735,255 +735,15 @@ Welcome to Fact-Ory, a place where you can find and share knowlege on just about
     </div>
     <!-- Div for the Emojis -->
     <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
+        <img class="w-6" src="./assets/images/speech-balloon.png" alt="">
         <div class="emojis flex">
-            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
+            <!-- <img class="w-6 ml-2" src="./assets/images/heart.png" alt=""><p>1</p>
+                <img class="w-6 ml-2" src="./assets/images/joy.png" alt=""><p>2</p>    
+                <img class="w-6 ml-2" src="./assets/images/lie.png" alt=""><p>3</p> -->
+                <button type="submit" class="starredtest w-6 h-6 border border-red-500"></button>
+            </div>
         </div>
-    </div>
 </div> </div>
-
-<div class="flex justify-between m-5  ">
-    <!-- Div for Flex Columns -->
-    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl ">
-        <img 
-        class="rounded-3xl rounded-b-none"
-        src="https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1" 
-        alt="Fact Image"
-        loading="lazy"
-        />
-        <!-- Div for the Tag & Time -->
-        <!-- Tag Div  -->
-        <div class="flex justify-between -mt-4 px-4">
-            <span id="fact-tag"
-            class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-light tracking-wide text-white px-3 pt-0.5">World
-        </span>
-        <!-- Date -->
-        <span class="flex h-min space-x-1 items-center rounded-full  bg-white py-1 px-2 text-xs font-medium" >
-            <p id="time" class="text-center ">
-              2 March 2021
-            </p>
-        </span>
-        </div>
-    <!-- Div for the Header  -->
-    <div class="py-2 px-4">
-        <h1 
-        class="text-lg font-medium leading-6 tracking-wide"> 
-        Easter Island Heads</h1>
-    </div>
-    <!-- Div for the Fact Body  -->
-    <div class="space-y-2 px-4 font-light ">
-        <p>The iconic stone heads protruding from the ground on Easter Island have bodies below.</p>
-    </div>
-    <!-- Div for horizontal Line -->
-    <div class="flex flex-row items-end h-full w-full px-4 mt-4 pt-3">
-        <div class="flex border-t border-gray-200 w-full py-3">
-        </div>
-    </div>
-    <!-- Div for the Emojis -->
-    <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
-        <div class="emojis flex">
-            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
-        </div>
-    </div>
-</div> </div>
-
-<div class="flex justify-between m-5  ">
-    <!-- Div for Flex Columns -->
-    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl ">
-        <img 
-        class="rounded-3xl rounded-b-none"
-        src="https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1" 
-        alt="Fact Image"
-        loading="lazy"
-        />
-        <!-- Div for the Tag & Time -->
-        <!-- Tag Div  -->
-        <div class="flex justify-between -mt-4 px-4">
-            <span id="fact-tag"
-            class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-light tracking-wide text-white px-3 pt-0.5">World
-        </span>
-        <!-- Date -->
-        <span class="flex h-min space-x-1 items-center rounded-full  bg-white py-1 px-2 text-xs font-medium" >
-            <p id="time" class="text-center ">
-              2 March 2021
-            </p>
-        </span>
-        </div>
-    <!-- Div for the Header  -->
-    <div class="py-2 px-4">
-        <h1 
-        class="text-lg font-medium leading-6 tracking-wide"> 
-        Easter Island Heads</h1>
-    </div>
-    <!-- Div for the Fact Body  -->
-    <div class="space-y-2 px-4 font-light ">
-        <p>The iconic stone heads protruding from the ground on Easter Island have bodies below.</p>
-    </div>
-    <!-- Div for horizontal Line -->
-    <div class="flex flex-row items-end h-full w-full px-4 mt-4 pt-3">
-        <div class="flex border-t border-gray-200 w-full py-3">
-        </div>
-    </div>
-    <!-- Div for the Emojis -->
-    <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
-        <div class="emojis flex">
-            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
-        </div>
-    </div>
-</div> </div>
-
-<div class="flex justify-between m-5  ">
-    <!-- Div for Flex Columns -->
-    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl ">
-        <img 
-        class="rounded-3xl rounded-b-none"
-        src="https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1" 
-        alt="Fact Image"
-        loading="lazy"
-        />
-        <!-- Div for the Tag & Time -->
-        <!-- Tag Div  -->
-        <div class="flex justify-between -mt-4 px-4">
-            <span id="fact-tag"
-            class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-light tracking-wide text-white px-3 pt-0.5">World
-        </span>
-        <!-- Date -->
-        <span class="flex h-min space-x-1 items-center rounded-full  bg-white py-1 px-2 text-xs font-medium" >
-            <p id="time" class="text-center ">
-              2 March 2021
-            </p>
-        </span>
-        </div>
-    <!-- Div for the Header  -->
-    <div class="py-2 px-4">
-        <h1 
-        class="text-lg font-medium leading-6 tracking-wide"> 
-        Easter Island Heads</h1>
-    </div>
-    <!-- Div for the Fact Body  -->
-    <div class="space-y-2 px-4 font-light ">
-        <p>The iconic stone heads protruding from the ground on Easter Island have bodies below.</p>
-    </div>
-    <!-- Div for horizontal Line -->
-    <div class="flex flex-row items-end h-full w-full px-4 mt-4 pt-3">
-        <div class="flex border-t border-gray-200 w-full py-3">
-        </div>
-    </div>
-    <!-- Div for the Emojis -->
-    <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
-        <div class="emojis flex">
-            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
-        </div>
-    </div>
-</div> </div>
-
-<div class="flex justify-between m-5  ">
-    <!-- Div for Flex Columns -->
-    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl ">
-        <img 
-        class="rounded-3xl rounded-b-none"
-        src="https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1" 
-        alt="Fact Image"
-        loading="lazy"
-        />
-        <!-- Div for the Tag & Time -->
-        <!-- Tag Div  -->
-        <div class="flex justify-between -mt-4 px-4">
-            <span id="fact-tag"
-            class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-light tracking-wide text-white px-3 pt-0.5">World
-        </span>
-        <!-- Date -->
-        <span class="flex h-min space-x-1 items-center rounded-full  bg-white py-1 px-2 text-xs font-medium" >
-            <p id="time" class="text-center ">
-              2 March 2021
-            </p>
-        </span>
-        </div>
-    <!-- Div for the Header  -->
-    <div class="py-2 px-4">
-        <h1 
-        class="text-lg font-medium leading-6 tracking-wide"> 
-        Easter Island Heads</h1>
-    </div>
-    <!-- Div for the Fact Body  -->
-    <div class="space-y-2 px-4 font-light ">
-        <p>The iconic stone heads protruding from the ground on Easter Island have bodies below.</p>
-    </div>
-    <!-- Div for horizontal Line -->
-    <div class="flex flex-row items-end h-full w-full px-4 mt-4 pt-3">
-        <div class="flex border-t border-gray-200 w-full py-3">
-        </div>
-    </div>
-    <!-- Div for the Emojis -->
-    <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
-        <div class="emojis flex">
-            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
-        </div>
-    </div>
-</div> </div>
-
-<div class="flex justify-between m-5  ">
-    <!-- Div for Flex Columns -->
-    <div class="flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl ">
-        <img 
-        class="rounded-3xl rounded-b-none"
-        src="https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1" 
-        alt="Fact Image"
-        loading="lazy"
-        />
-        <!-- Div for the Tag & Time -->
-        <!-- Tag Div  -->
-        <div class="flex justify-between -mt-4 px-4">
-            <span id="fact-tag"
-            class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-light tracking-wide text-white px-3 pt-0.5">World
-        </span>
-        <!-- Date -->
-        <span class="flex h-min space-x-1 items-center rounded-full  bg-white py-1 px-2 text-xs font-medium" >
-            <p id="time" class="text-center ">
-              2 March 2021
-            </p>
-        </span>
-        </div>
-    <!-- Div for the Header  -->
-    <div class="py-2 px-4">
-        <h1 
-        class="text-lg font-medium leading-6 tracking-wide"> 
-        Easter Island Heads</h1>
-    </div>
-    <!-- Div for the Fact Body  -->
-    <div class="space-y-2 px-4 font-light ">
-        <p>The iconic stone heads protruding from the ground on Easter Island have bodies below.</p>
-    </div>
-    <!-- Div for horizontal Line -->
-    <div class="flex flex-row items-end h-full w-full px-4 mt-4 pt-3">
-        <div class="flex border-t border-gray-200 w-full py-3">
-        </div>
-    </div>
-    <!-- Div for the Emojis -->
-    <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
-        <div class="emojis flex">
-            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
-        </div>
-    </div>
-</div> </div>
-
 
 <!-- Copies End Here  -->
 <!-- ************************************************************************************************** -->
@@ -991,6 +751,9 @@ Welcome to Fact-Ory, a place where you can find and share knowlege on just about
 
 </main>
 </body>
+
+
+
 <footer>
     <!-- Buttons at bottom  -->
     <button id="addNewPostbtn" onclick="openModal('addPost-modal')" class="fixed bottom-5 right-5 p-0 w-12 h-12 bg-green-500 rounded-full hover:bg-green-700 active:shadow mouse shadow-md transition ease-in duration-200 focus:outline-none">
@@ -1030,11 +793,11 @@ style="background: rgba(0,0,0,.7);">
         <p> There's a ghost town, Singapore, buried under the Saugatuck sand dunes in Michigan. After the Great Michigan Fire, much of the trees protecting the city from the harsh winds of Lake Michigan were cut down. The combination of winds and sand eroded the buildings, until they were buried.</p>
     </div>
     <div class="container-response flex justify-between p-4 pt-0">
-        <img class="w-6" src="../assets/images/speech-balloon.png" alt="">
+        <img class="w-6" src="./assets/images/speech-balloon.png" alt="">
         <div class="emojis flex">
-            <img class="w-6 ml-2" src="../assets/images/heart.png" alt="">
-            <img class="w-6 ml-2" src="../assets/images/joy.png" alt="">
-            <img class="w-6 ml-2" src="../assets/images/lie.png" alt="">
+            <img class="w-6 ml-2" src="./assets/images/heart.png" alt="">
+            <img class="w-6 ml-2" src="./assets/images/joy.png" alt="">
+            <img class="w-6 ml-2" src="./assets/images/lie.png" alt="">
         </div>
     </div>
 </div>
