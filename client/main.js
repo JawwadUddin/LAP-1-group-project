@@ -329,10 +329,22 @@ function reactBtn(clicked_id)
   {
     let clickedid = clicked_id;
     let pid = clicked_id+"counter";
-    console.log(pid)
-
+    
     let ptag = document.getElementById(`${pid}`);
-    console.log(ptag)
     ptag.innerHTML = parseInt(ptag.innerHTML) + 1;
     console.log(clickedid)
+    patchData(clicked_id, pid);
   }
+
+  async function patchData(clicked_id){
+    let options = {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({clicked_id})
+    }
+    let response = await fetch('http://localhost:3000/journalentries', options);
+    let responseJSON = await response.json();
+}
