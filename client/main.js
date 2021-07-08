@@ -27,9 +27,11 @@ const modalClose = (modal) => {
     const modalToClose = document.querySelector('.'+modal);
     modalToClose.classList.remove('fadeIn');
     modalToClose.classList.add('fadeOut');
-    setTimeout(() => {
+    setTimeout(() => {  
         modalToClose.style.display = 'none';
     }, 500);
+    let set = document.getElementById("image_post_div")
+    set.setAttribute('class', "hidden flex h-48")
 }
 
 //Open Modal 
@@ -38,6 +40,8 @@ const openModal = (modal) => {
     modalToOpen.classList.remove('fadeOut');
     modalToOpen.classList.add('fadeIn');
     modalToOpen.style.display = 'flex';
+    let set2 = document.getElementById("image_post")
+    set2.setAttribute('src', 'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg')
 }
 
 //testfnc
@@ -85,7 +89,9 @@ function submitForm(event) {
     let fact = event.target.fact.value;
     let factheader = event.target.factheader.value;
     let outputGifs = document.querySelector("#image_post");
-    postData(fact, factheader, outputGifs.src)
+    postData(fact, factheader, outputGifs.src);
+    // let forms = document.getElementById("new-fact-form")
+    form.reset()
 }   
 async function postData(fact, factheader, src){
     let options = {
@@ -255,7 +261,8 @@ function createCard(item) {
     img3.className = "starred w-6 ml-2";
     img3.setAttribute('id', `${item.id}a`);
     let p3 = document.createElement("p");
-    p3.setAttribute('id', `${item.id}acounter`)
+    p3.className = "ml-2 font-light bg-gray-200 rounded-full px-2";
+    p3.setAttribute('id', `${item.id}acounter`);
     p3.textContent = item.reactions[0];
 
     // let svg3 = document.createElement("svg");
@@ -291,6 +298,7 @@ function createCard(item) {
     img4.className = "lol w-6 ml-2";
     img4.setAttribute('id', `${item.id}b`);
     let p4 = document.createElement("p");
+    p4.className = "ml-2 font-light bg-gray-200 rounded-full px-2";
     p4.setAttribute('id', `${item.id}bcounter`)
     p4.textContent = item.reactions[1];
 
@@ -327,6 +335,7 @@ function createCard(item) {
     img5.className = "lying w-6 ml-2";
     img5.setAttribute('id', `${item.id}c`);
     let p5 = document.createElement("p");
+    p5.className = "ml-2 font-light bg-gray-200 rounded-full px-2";
     p5.setAttribute('id', `${item.id}ccounter`)
     p5.textContent = item.reactions[2];
 
