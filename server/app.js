@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 app.post("/journalentries", (req, res) => {
     const title = req.body.factheader;
     const content = req.body.fact;
+    const src = req.body.src;
     // console.log(req)
     const journalentries = readdata()
     // console.log(journalentries)
@@ -33,7 +34,9 @@ app.post("/journalentries", (req, res) => {
                                     date: new Date().toLocaleDateString(), 
                                     time: new Date().toLocaleTimeString(),
                                     comment: [],
-                                    reactions: [0,0,0]});
+                                    reactions: [0,0,0],
+                                    src: src
+                                });
     console.log(entry)
     journalentries.push(entry.id)
     writedata(journalentries)
@@ -54,7 +57,7 @@ app.get('/journalentries/:id', (req, res) => {
     // const commented_entry = journalentries.filter(entry => entry.id == ParseInt(id))
     // commented_entry.comment.push(data)
     // writedata(journalentries)
-    res.json(journalentries[id])
+    res.json(journalentries[id-1])
 })
 // app.patch('/journalentries/:id', (req, res) => {
 //     let id = req.params.id
@@ -67,8 +70,9 @@ app.get('/journalentries/:id', (req, res) => {
 // })
 
 app.patch('/journalentries', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     let clicked_id = req.body.clicked_id;
+    // console.log(clicked_id)
     let id = clicked_id[0];
     const journalentries = readdata();
     const entry = journalentries.filter( e => e.id == parseInt(id))[0];
@@ -84,7 +88,19 @@ app.patch('/journalentries', (req, res) => {
     res.json(journalentries)
     entry.reactions[index] += 1;
     writedata(journalentries)
-    // console.log(entry);
+})
+
+app.patch('/comments', (req, res) => {
+    // console.log(req.body)
+    let id = req.body.clicked_id;
+    let h = req.body.h;
+    console.log(id)
+    const journalentries = readdata();
+    const entry = journalentries.filter( e => e.id == parseInt(id))[0];
+    console.log(entry)
+    res.json(journalentries)
+    entry.comment.push(h);
+    writedata(journalentries)
 })
 
 const port = process.env.PORT || 3000; 

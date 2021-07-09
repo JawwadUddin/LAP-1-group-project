@@ -1,5 +1,18 @@
 loadingCards()
 
+// Setup 
+const form = document.querySelector('#new-fact-form');
+const main = document.querySelector("main");
+
+// Bind Event Listeners
+form.addEventListener('submit', submitForm);
+
+ // // Setup 
+                    const formgif = document.querySelector('#searchbargif');
+
+                    // // Bind Event Listeners
+                    formgif.addEventListener('submit', searchgiphy);
+
 //closes modals on opening the site 
 all_modals = ['addPost-modal', 'randomPost-modal']
 all_modals.forEach((modal)=>{
@@ -14,9 +27,11 @@ const modalClose = (modal) => {
     const modalToClose = document.querySelector('.'+modal);
     modalToClose.classList.remove('fadeIn');
     modalToClose.classList.add('fadeOut');
-    setTimeout(() => {
+    setTimeout(() => {  
         modalToClose.style.display = 'none';
     }, 500);
+    let set = document.getElementById("image_post_div")
+    set.setAttribute('class', "hidden flex h-48")
 }
 
 //Open Modal 
@@ -25,6 +40,8 @@ const openModal = (modal) => {
     modalToOpen.classList.remove('fadeOut');
     modalToOpen.classList.add('fadeIn');
     modalToOpen.style.display = 'flex';
+    let set2 = document.getElementById("image_post")
+    set2.setAttribute('src', 'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg')
 }
 
 //testfnc
@@ -41,40 +58,12 @@ function addgifbtnclicked() {
     sect5.setAttribute('class', 'flex h-48')
 }
 
-function addcomments() {
-    let sect = document.getElementById('comments-section') 
-    sect.setAttribute('class', '')
-    let sect2 = document.getElementById('emotes-section')
-    sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
-    let sect3 = document.getElementById('Layer_1_messages')
-    sect3.setAttribute('class', 'ml-1 hidden')
-    let sect4 = document.getElementById('Layer_1_hidden')
-    sect4.setAttribute('class', 'ml-1')
-    
-}
-
-function removecomments() {
-    let sect = document.getElementById('comments-section') 
-    sect.setAttribute('class', 'hidden')
-    let sect2 = document.getElementById('emotes-section')
-    sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
-    let sect3 = document.getElementById('Layer_1_messages')
-    sect3.setAttribute('class', 'ml-1')
-    let sect4 = document.getElementById('Layer_1_hidden')
-    sect4.setAttribute('class', 'ml-1 hidden')
-    
-}
-
-
 
 function clickedSearch() {
     let sect = document.getElementById('searchbargif') 
     sect.setAttribute('class', 'hidden searchbox flex justify-center my-1 pb-3')
 }
 
-function test() {
-    console.log("Clicked")
-}
 
 function searchgiphy(e) {
     e.preventDefault(); //Stops page reloading
@@ -99,33 +88,36 @@ function submitForm(event) {
     event.preventDefault();
     let fact = event.target.fact.value;
     let factheader = event.target.factheader.value;
-    postData(fact, factheader)
+    let outputGifs = document.querySelector("#image_post");
+    postData(fact, factheader, outputGifs.src);
+    // let forms = document.getElementById("new-fact-form")
+    form.reset()
 }   
-async function postData(fact, factheader){
+async function postData(fact, factheader, src){
     let options = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-        body: JSON.stringify({fact, factheader})
+        body: JSON.stringify({fact, factheader, src})
     }
-    let response = await fetch('http://localhost:3000/journalentries', options);
+    let response = await fetch('https://factori.herokuapp.com/journalentries', options);
     // console.log(response)
     let responseJSON = await response.json();
     // console.log(responseJSON)
-    getItems(fact, factheader);
+    getItems(fact, factheader, src);
 }
 
 async function loadingCards(){
-    let response = await fetch('http://localhost:3000/journalentries');
+    let response = await fetch('https://factori.herokuapp.com/journalentries');
     console.log(response);
     let items  = await response.json();
     items.forEach(item => createCard(item))
 }
 
 async function getItems(){
-    let response = await fetch('http://localhost:3000/journalentries');
+    let response = await fetch('https://factori.herokuapp.com/journalentries');
     console.log(response);
     let items  = await response.json();
     console.log(items)
@@ -133,17 +125,21 @@ async function getItems(){
 }
 
 function createCard(item) {
+    
     let div1 = document.createElement("div");
-    div1.className = "flex justify-between m-5";
+    div1.className = "flex m-5 lg:w-1/4";
 
     let div2 = document.createElement("div");
-    div2.className = "flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl";
+    div2.className = "flex flex-col h-full border max-w-lg shadow-sm mx-auto bg-white rounded-3xl w-11/12";
 
-    let img1 = document.createElement("img");
-    img1.className = "rounded-3xl rounded-b-none";
-    img1.setAttribute('src','https://i1.wp.com/bestlifeonline.com/wp-content/uploads/2020/08/Easter-Island-heads.jpg?resize=500%2C333&ssl=1');
-    img1.setAttribute('alt','Fact Image');
-    img1.setAttribute('loading','lazy');
+    if (item.src !== "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg") {
+        let img1 = document.createElement("img");
+        img1.className = "rounded-3xl rounded-b-none w-full object-cover";
+        img1.setAttribute('src', item.src);
+        img1.setAttribute('alt','Fact Image');
+        img1.setAttribute('loading','lazy');
+        div2.appendChild(img1);
+    }
 
     let div3 = document.createElement("div");
     div3.className = "flex justify-between -mt-4 px-4";
@@ -182,6 +178,7 @@ function createCard(item) {
 
     let div8 = document.createElement("div");
     div8.className = "flex justify-between p-4 pt-0";
+    div8.setAttribute('id', `${item.id}emotesection`);
 
     // let svg1 = document.createElement("svg");
     // svg1.className = "ml-1";
@@ -218,9 +215,15 @@ function createCard(item) {
 
     let img2 = document.createElement("img");
     img2.setAttribute('src', './assets/images/message2.svg');
-    img2.setAttribute('onCLick', 'reactBtn(this.id)');
+    img2.setAttribute('onCLick', 'showcomments(parseInt(this.id[0]))');
     img2.className = "message2 w-6";
-    img2.setAttribute('id', `${item.id}x`);
+    img2.setAttribute('id', `${item.id}messages`);
+
+    let img2b = document.createElement("img");
+    img2b.setAttribute('src', './assets/images/message2.svg');
+    img2b.setAttribute('onCLick', 'hidecomments(parseInt(this.id[0]))');
+    img2b.className = "message2 w-6 hidden";
+    img2b.setAttribute('id', `${item.id}hidden`);
 
     let div9 = document.createElement("div");
     div9.className = "flex";
@@ -258,7 +261,8 @@ function createCard(item) {
     img3.className = "starred w-6 ml-2";
     img3.setAttribute('id', `${item.id}a`);
     let p3 = document.createElement("p");
-    p3.setAttribute('id', `${item.id}acounter`)
+    p3.className = "ml-2 font-light bg-gray-200 rounded-full px-2";
+    p3.setAttribute('id', `${item.id}acounter`);
     p3.textContent = item.reactions[0];
 
     // let svg3 = document.createElement("svg");
@@ -294,6 +298,7 @@ function createCard(item) {
     img4.className = "lol w-6 ml-2";
     img4.setAttribute('id', `${item.id}b`);
     let p4 = document.createElement("p");
+    p4.className = "ml-2 font-light bg-gray-200 rounded-full px-2";
     p4.setAttribute('id', `${item.id}bcounter`)
     p4.textContent = item.reactions[1];
 
@@ -330,6 +335,7 @@ function createCard(item) {
     img5.className = "lying w-6 ml-2";
     img5.setAttribute('id', `${item.id}c`);
     let p5 = document.createElement("p");
+    p5.className = "ml-2 font-light bg-gray-200 rounded-full px-2";
     p5.setAttribute('id', `${item.id}ccounter`)
     p5.textContent = item.reactions[2];
 
@@ -337,7 +343,7 @@ function createCard(item) {
     document.querySelector("main").appendChild(div1);
     div1.appendChild(div2);
     
-    div2.appendChild(img1);
+    // div2.appendChild(img1);
     div2.appendChild(div3);
     div2.appendChild(div4);
     div2.appendChild(div5);
@@ -355,6 +361,7 @@ function createCard(item) {
     div6.appendChild(div7);
 
     div8.appendChild(img2);
+    div8.appendChild(img2b)
     // svg1.appendChild(path1);
     // svg1.appendChild(g1);
     // g1.appendChild(circle1);
@@ -382,6 +389,53 @@ function createCard(item) {
     // svg4.appendChild(g7);
     // g6.appendChild(path6);
     // g7.appendChild(path7);
+
+    // this is the comment section
+
+    let div10 = document.createElement("div");
+    div10.className = "hidden";
+    div10.setAttribute('id', `${item.id}commentsection`);
+
+    div2.appendChild(div10);
+
+    let div10a = document.createElement("div");
+    div10a.setAttribute('id', `${item.id}commentsectiondiv`);
+
+    for (let i=0; i<item.comment.length; i++) {
+        let coms = document.createElement("p");
+        coms.textContent = item.comment[i];
+        coms.className = "border-t border-gray-200 my-2 pb-2 font-light text-center mx-4 pt-2";
+        div10a.appendChild(coms);
+    }
+
+    div10.appendChild(div10a)
+
+    let div11 = document.createElement("div");
+    div10.appendChild(div11);
+    div11.className = "flex justify-between mx-4";
+
+    let form = document.createElement("form");
+    form.className = "flex justify-between mb-3 w-full"
+    form.setAttribute('id', `${item.id}form`)
+    div11.appendChild(form);
+
+    let input1 = document.createElement("input");
+    let input2 = document.createElement("input");
+
+    input1.setAttribute('type', "text");
+    input1.className = "w-full mr-3 pl-4 outline-none font-light border border-gray-300 rounded-full focus:outline-none px-2 focus:border-blue-300 focus:shadow-blue";
+    input1.setAttribute('placeholder', "comment here...");
+    input1.setAttribute('id', `actualcomment${item.id}`);
+
+    input2.setAttribute('type', "submit");
+    input2.className = "comment-button bg-gray-600 text-white p-2 hover:bg-blue-400 cursor-pointer rounded-full";
+    input2.setAttribute('value', "");
+    input2.setAttribute('id', `${item.id}submitcomment`);
+
+    form.appendChild(input1);
+    form.appendChild(input2);
+
+    form.addEventListener('submit', submitcomment)
 }
 
 // working on emotes now
@@ -405,24 +459,60 @@ function reactBtn(clicked_id)
           },
         body: JSON.stringify({clicked_id})
     }
-    let response = await fetch('http://localhost:3000/journalentries', options);
+    let response = await fetch('https://factori.herokuapp.com/journalentries', options);
     let responseJSON = await response.json();
 }
 
-module.exports = { 
-    modalClose,
-    openModal,
-    addgifbtnclicked,
-    addcomments,
-    removecomments,
-    clickedSearch,
-    searchgiphy,
-    test,
-    submitForm,
-    postData,
-    loadingCards,
-    getItems,
-    createCard,
-    reactBtn,
-    patchData        
+//getting the comments to work
+
+function showcomments(id) {
+    let sect = document.getElementById(`${id}commentsection`)
+    sect.setAttribute('class', '')
+    let sect2 = document.getElementById(`${id}emotesection`)
+    sect2.setAttribute('class', 'flex justify-between px-4 pb-2 pt-0')
+    let sect3 = document.getElementById(`${id}messages`)
+    sect3.setAttribute('class', 'w-6 hidden')
+    let sect4 = document.getElementById(`${id}hidden`)
+    sect4.setAttribute('class', 'w-6')
+    
+}
+
+function hidecomments(id) {
+    let sect = document.getElementById(`${id}commentsection`)
+    sect.setAttribute('class', 'hidden')
+    let sect2 = document.getElementById(`${id}emotesection`)
+    sect2.setAttribute('class', 'flex justify-between px-4 mb-3 pb-2 pt-0')
+    let sect3 = document.getElementById(`${id}messages`)
+    sect3.setAttribute('class', 'w-6')
+    let sect4 = document.getElementById(`${id}hidden`)
+    sect4.setAttribute('class', 'w-6 hidden')
+    
+}
+
+function submitcomment(event) {
+    event.preventDefault();
+    console.log(event.target)
+    let formid = event.target.id;
+    let divid = `${formid[0]}commentsectiondiv`;
+    let div = document.getElementById(divid);
+    let p = document.createElement("p");
+    p.className = "border-t border-gray-200 my-2 pb-2 font-light text-center mx-4 pt-2"
+    let holder = `actualcomment${formid[0]}`;
+    let h = document.getElementById(holder).value;
+    p.textContent = h;
+    div.appendChild(p);
+    patchcomment(formid[0], h)
+}       
+
+async function patchcomment(clicked_id, h){
+    let options = {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({clicked_id, h})
+    }
+    let response = await fetch('https://factori.herokuapp.com/comments', options);
+    let responseJSON = await response.json();
 }
