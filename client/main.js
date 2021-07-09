@@ -102,7 +102,7 @@ async function postData(fact, factheader, src){
           },
         body: JSON.stringify({fact, factheader, src})
     }
-    let response = await fetch('http://localhost:3000/journalentries', options);
+    let response = await fetch('https://factori.herokuapp.com/journalentries', options);
     // console.log(response)
     let responseJSON = await response.json();
     // console.log(responseJSON)
@@ -110,14 +110,14 @@ async function postData(fact, factheader, src){
 }
 
 async function loadingCards(){
-    let response = await fetch('http://localhost:3000/journalentries');
+    let response = await fetch('https://factori.herokuapp.com/journalentries');
     console.log(response);
     let items  = await response.json();
     items.forEach(item => createCard(item))
 }
 
 async function getItems(){
-    let response = await fetch('http://localhost:3000/journalentries');
+    let response = await fetch('https://factori.herokuapp.com/journalentries');
     console.log(response);
     let items  = await response.json();
     console.log(items)
@@ -459,7 +459,7 @@ function reactBtn(clicked_id)
           },
         body: JSON.stringify({clicked_id})
     }
-    let response = await fetch('http://localhost:3000/journalentries', options);
+    let response = await fetch('https://factori.herokuapp.com/journalentries', options);
     let responseJSON = await response.json();
 }
 
@@ -513,6 +513,6 @@ async function patchcomment(clicked_id, h){
           },
         body: JSON.stringify({clicked_id, h})
     }
-    let response = await fetch('http://localhost:3000/comments', options);
+    let response = await fetch('https://factori.herokuapp.com/comments', options);
     let responseJSON = await response.json();
 }
