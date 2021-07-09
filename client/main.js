@@ -215,13 +215,13 @@ function createCard(item) {
 
     let img2 = document.createElement("img");
     img2.setAttribute('src', './assets/images/message2.svg');
-    img2.setAttribute('onCLick', 'showcomments(parseInt(this.id[0]))');
+    img2.setAttribute('onCLick', 'showcomments(parseInt(this.id))');
     img2.className = "message2 w-6";
     img2.setAttribute('id', `${item.id}messages`);
 
     let img2b = document.createElement("img");
     img2b.setAttribute('src', './assets/images/message2.svg');
-    img2b.setAttribute('onCLick', 'hidecomments(parseInt(this.id[0]))');
+    img2b.setAttribute('onCLick', 'hidecomments(parseInt(this.id))');
     img2b.className = "message2 w-6 hidden";
     img2b.setAttribute('id', `${item.id}hidden`);
 
@@ -491,17 +491,20 @@ function hidecomments(id) {
 
 function submitcomment(event) {
     event.preventDefault();
-    console.log(event.target)
+    // console.log(event.target)
     let formid = event.target.id;
-    let divid = `${formid[0]}commentsectiondiv`;
+    let idstart = formid.replace("form", "")
+    // console.log(formid)
+    // console.log(idstart)
+    let divid = `${idstart}commentsectiondiv`;
     let div = document.getElementById(divid);
     let p = document.createElement("p");
     p.className = "border-t border-gray-200 my-2 pb-2 font-light text-center mx-4 pt-2"
-    let holder = `actualcomment${formid[0]}`;
+    let holder = `actualcomment${idstart}`;
     let h = document.getElementById(holder).value;
     p.textContent = h;
     div.appendChild(p);
-    patchcomment(formid[0], h)
+    patchcomment(idstart, h)
 }       
 
 async function patchcomment(clicked_id, h){
